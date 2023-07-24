@@ -27,7 +27,7 @@ database : 프로젝트 필요한 데이터를 저장하고 관리하는 역할
          서버 중지 : control + c
 
 - CLI : command line interface --> 리눅스 기반
-- 
+
 - GUI : 사용자에 초점 화면 --> window 명령
 
 ### 자주사용하는 명령어

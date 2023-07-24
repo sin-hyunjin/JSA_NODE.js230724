@@ -2,7 +2,7 @@
 
     $ ifconfig | grep inet
 
-    $ $ ipconfig getifaddr en0 -> "ip만 나와서 간편하게 확인가능"
+    $ ipconfig getifaddr en0 -> "ip만 나와서 간편하게 확인가능"
 
 ### 프로젝트(웹)을 만든다 가정했을떄?
 

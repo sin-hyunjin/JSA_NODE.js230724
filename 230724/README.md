@@ -10,7 +10,7 @@ front-end : html,css,jaavaScript 로 화면 구현
 back-end : node.js를 통해서 서버 측 로직을 구현하고 DB의 데이터를 가져올 수 있다.
 database : 프로젝트 필요한 데이터를 저장하고 관리하는 역할
 
-### server를 열기 위해서는 규약을 지켜야한다
+### Server를 열기 위해서는 규약을 지켜야한다
 
 1.  http로 서버 열기 : createServer
 

@@ -28,12 +28,14 @@ http
     console.log(qyeryData);
     response.writeHead(200, { "Content-Type": "text/html;charset=utf-8" });
     if (qyeryData.inputId == "aischool" && qyeryData.inputPw == "123") {
+      // 로그인 성공
       response.write("<html>");
       response.write("<body>");
       response.write("<h1>로그인 성공</h1>");
       response.write("</body>");
       response.write("</html>");
     } else {
+      // 로그인 실패
       response.write("<html>");
       response.write("<body>");
       response.write("<h1>로그인 실패</h1>");

@@ -22,15 +22,52 @@
 
     $ node -v
 
-## Node.js 수업방향
+# 🤔230725 get, post 요청방식
+
+1. **`http.createServer()`**:
+
+   - 이 메소드는 HTTP 서버를 생성하는 데 사용된다.
+     서버는 들어오는 요청을 수신 대기한다.
+
+   - 콜백 함수를 인자로 받으며, 서버로 요청이 들어올 때마다 이 함수가 실행된다.
+
+2. **`req.on("data", (data) => { ... })`**:
+
+   - 이 메소드는 들어오는 요청 (`req`)의 "data" 이벤트에 대한 이벤트 리스너이다.
+
+   - 요청의 데이터를 수신하면 이벤트가 트리거되며, 데이터 청크는 `bodydata`에 연결된다.
+
+3. **`req.on("end", () => { ... })`**:
+
+   - 이 메소드는 들어오는 요청 (`req`)의 "end" 이벤트에 대한 이벤트 리스너이다.
+
+   - 요청의 모든 데이터가 수신되면 이벤트가 트리거되며, `bodydata`에 저장된 데이터를 `qs.parse()`를 사용하여 객체로 파싱하고, `queryDate`에 저장한다.
+
+4. **`res.writeHead(200, { Content_type: "text/html;charset=utf-8" })`**:
+
+   - 이 메소드는 응답 헤더를 클라이언트에 작성하는 데 사용된다.
+
+   - HTTP 상태 코드를 `200 OK`로 설정하고, 콘텐츠 타입을 `text/html;charset=utf-8`로 설정한다.
+
+5. **`res.write(exPostTemp.formtemp(queryDate))`**:
+
+   - 이 메소드는 응답 본문을 클라이언트에 작성하는 데 사용된다.
+
+   - `exPostTemp` 모듈에서 `formtemp` 함수를 호출하여 `queryDate`를 인자로 전달하고, 반환된 HTML을 응답으로 작성한다.
+
+6. **`res.end()`**:
+   - 이 메소드는 응답을 종료하고 클라이언트로 보냅니다.
+   - 응답 본문을 작성한 후에 이 메소드를 호출하여 응답을 완료한다.
+
+# 🤔Node.js 수업방향 2307256
 
 ![image](https://github.com/sin-hyunjin/JSA_NODE.js_230724/assets/116487398/f30ead95-584a-4f04-a8e4-6e774f5e7fcd)
 
-### nodemon 설치방법(nodejs 프로세스 관리도구 )
+## nodemon 설치방법(nodejs 프로세스 관리도구 )
 
     $ npm install nodemon -g
 
-#### 설치한 다음 다음 명령어로 서버를 실행
+### 설치한 다음 다음 명령어로 서버를 실행
 
     $ nodemon 파일이름
 
@@ -39,11 +76,11 @@
 - 폴더 내의 문서들이 수정되면 서버를 자동으로 재시작:
   nodemon --watch server/ server/basic-server.js
 
-## Express 처리흐름
+# Express 처리흐름
 
 ![스크린샷 2023-07-26 오후 2 08 48](https://github.com/sin-hyunjin/NDB_Project_2307241/assets/116487398/e20694f5-bcb6-43ff-a615-423118e814a7)
 
-### 설치방법
+## 설치방법
 
 Node.js가 이미 설치되었다고 가정한 상태에서
 
@@ -112,4 +149,17 @@ app.use(router);
 
 ```Javascript
 app.listen(3000);
+```
+
+- 6. 요청을 보낸 주소값에 대해서 처리!
+
+라우팅 작업
+
+```Javascript
+router.get("/", (request, response) => {
+  console.log("서버접속 확인 ");
+});
+router.get("/plus", (request, response) => {
+  console.log("plus서버접속 확인 ");
+});
 ```

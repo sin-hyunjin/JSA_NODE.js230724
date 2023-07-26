@@ -6,6 +6,7 @@ http.createServer((request, response) => {}).listen(3000);
 // == express로 서버 요청하기 =====
 
 // 1. express 사용 기능 가져오기
+const { request } = require("express");
 const express = require("express");
 // 2. express 실행 정보를 app 변수에 저장
 const app = express();
@@ -16,3 +17,12 @@ app.use(router);
 // 클라이언트가 요청보낸 주소값에 따라서 서버를 사용한다.
 // 5. 포트번호 등록
 app.listen(3000);
+
+// 6. 요청을 보낸 주소값에 대해서 처리!
+// http://localhost:3000
+router.get("/", (request, response) => {
+  console.log("서버접속 확인 ");
+});
+router.get("/plus", (request, response) => {
+  console.log("plus서버접속 확인 ");
+});

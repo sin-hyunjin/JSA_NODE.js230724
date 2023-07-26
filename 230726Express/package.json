@@ -1,0 +1,14 @@
+{
+  "name": "0725express",
+  "version": "1.0.0",
+  "description": "express",
+  "main": "index.js",
+  "scripts": {
+    "test": "express 첫실습"
+  },
+  "author": "신현진",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

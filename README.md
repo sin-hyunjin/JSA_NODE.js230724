@@ -87,7 +87,7 @@ Node.js가 이미 설치되었다고 가정한 상태에서
     $ mkdir myapp
     $ cd myapp
 
-npm init 명령을 이용하여 애플리케이션에 대한 package.json 파일을 작성
+npm init 명령을 이용하여 애플리케이션에 대한 package.json 파일을 작성한다.
 
     $ npm init
 
@@ -117,7 +117,7 @@ Express를 임시로 설치하고 종속 항목 목록에 추가하지 않으려
 
 - app.js 서버를 실행하기 위한 Main 파일(express 미들웨어 설정 )
 
-#### express로 서버 요청기본방식
+### express로 서버 요청기본방식
 
 - 1. express 사용 기능 가져오기
 
@@ -140,6 +140,9 @@ const router = express.Router();
 - 4. 서버등록
 
 ```Javascript
+// body 영역 사용등록 --> post 방식때 사용되어짐
+app.use(express.urlencoded({ extended: true })); //body 영역 허용
+app.use(express.json()) // 받은 데이터를 json형태로 변환
 app.use(router);
 ```
 
@@ -162,4 +165,37 @@ router.get("/", (request, response) => {
 router.get("/plus", (request, response) => {
   console.log("plus서버접속 확인 ");
 });
+```
+
+# 🤔 express.js 수업내용 230727
+
+![스크린샷 2023-07-27 오후 3 20 24](https://github.com/sin-hyunjin/JSA_NODE.js_230724/assets/116487398/33ebff95-86df-4941-a521-d4cc53617a34)
+
+## 경로를 설정할 수 있는 Router 모듈 만들기
+
+router.js
+
+```Javascript
+const { Router } = require("express");
+const express = require("express");
+const router = express(Router);
+
+// router를 따로 빼줌
+router.get("/", (request, response) => {
+  console.log("접속확인");
+});
+router.get("/response", (request, response) => {
+  console.log(request.query.text);
+});
+
+// 위에 만들어진 기능을 외부에서 사용할 수 있도록 빼내는 작업
+// --> 모듈화 (router)
+module.exports = router;
+
+```
+
+app.js
+
+```javascript
+const router = require("./router/router");
 ```

@@ -11,7 +11,7 @@ http
       let queryDate = qs.parse(bodydata);
       console.log(queryDate);
       ("aaaui");
-      res.writeHead(200, { Content_type: "text/html;charset=utf-8" });
+      res.writeHead(200, { "Content-Type": "text/html;charset=utf-8" });
 
       res.write(exPostTemp.formtemp(queryDate));
       res.end();

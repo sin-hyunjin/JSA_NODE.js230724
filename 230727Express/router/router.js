@@ -32,15 +32,18 @@ router.get("/nextPage", function (request, response) {
   }
 });
 
+let join_id = ""; //전역변수
+// 중첩 라우터 방식
 // 회원가입 페이지
 router.post("/join", (request, response) => {
   join_id = request.body.id; // 회원가입시 입력한 아이디
-  join_pw = request.body.pw; // 회원가압시 입력한 비밀번호
-  join_name = request.body.name; //회원가입시 입력한 이름
+  let join_pw = request.body.pw; // 회원가압시 입력한 비밀번호
+  let join_name = request.body.name; //회원가입시 입력한 이름
   // console.log(join_id);
 
   // 회원가입 클릭시 로그인 페이지로 리디렉션
   response.redirect("http://127.0.0.1:5501/230727Express/public/Login.html");
+
   // 로그인 페이지
   router.post("/login", (request, response) => {
     let id = request.body.id;
@@ -56,18 +59,6 @@ router.post("/join", (request, response) => {
     }
   });
   response.end(); //응답 종료
-});
-
-router.post("/login", (request, response) => {
-  let id = request.body.id;
-  let pw = request.body.PW;
-  console.log(id);
-  if (id == "aischool" && pw == "123") {
-    response.redirect("http://127.0.0.1:5501/230727Express/public/S.html");
-  } else {
-    response.redirect("http://127.0.0.1:5501/230727Express/public/F.html");
-  }
-  response.end();
 });
 
 // 위에 만들어진 기능을 외부에서 사용할 수 있도록 빼내는 작업

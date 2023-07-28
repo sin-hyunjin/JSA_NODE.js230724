@@ -22,6 +22,8 @@
 
     $ node -v
 
+<hr/>
+
 # 🤔get, post 요청방식 230725get_post
 
 =======
@@ -64,6 +66,8 @@ database : 프로젝트 필요한 데이터를 저장하고 관리하는 역할
 - clear : 커맨드 창 지우기
 - tab : 자동완성
 
+<hr/>
+
 # 🤔230725 get, post 요청방식
 
 > > > > > > > b84cdd264420cd7764fd6477a66bc0df181849d7
@@ -102,6 +106,8 @@ database : 프로젝트 필요한 데이터를 저장하고 관리하는 역할
 6. **`res.end()`**:
    - 이 메소드는 응답을 종료하고 클라이언트로 보냅니다.
    - 응답 본문을 작성한 후에 이 메소드를 호출하여 응답을 완료한다.
+
+<hr/>
 
 # 🤔Node.js 수업방향 2307256Express
 
@@ -211,6 +217,8 @@ router.get("/plus", (request, response) => {
 });
 ```
 
+<hr/>
+
 # 🤔 express.js 수업내용 230727Express
 
 ![스크린샷 2023-07-27 오후 3 20 24](https://github.com/sin-hyunjin/JSA_NODE.js_230724/assets/116487398/33ebff95-86df-4941-a521-d4cc53617a34)
@@ -244,9 +252,11 @@ module.exports = router;
 const router = require("./router/router");
 ```
 
+<hr/>
+
 # 🤔 express.js 수업내용 230728
 
-- 230727Express 회원가입 실습에서 Database 연결하기(MYSQL)
+### - 230727Express 회원가입 실습에서 Database 연결하기(MYSQL)
 
 ## 수행할 내용
 
@@ -269,21 +279,21 @@ const router = require("./router/router");
 
 수업은 오라클 배웠는데 수행은 mysql로 한다니 다시 다운로드 방법을 찾아 보았다 .
 
-### MySQL Community Server 다운로드 및 MySQL 설치
+### - MySQL Community Server 다운로드 및 MySQL 설치
 
 dev.mysql.com/downloads/
 
-- 1. MySQL Community Server 클릭
+1. MySQL Community Server 클릭
 
-- 2. Operating System 을 macOS 로 선택하고 macOS 의 dmg 설치파일을 다운로드
+2. Operating System 을 macOS 로 선택하고 macOS 의 dmg 설치파일을 다운로드
 
-- 3. No thanks, just start my download. 클릭.
+3. No thanks, just start my download. 클릭.
 
-### 설치 후 해당경로 들어가기
+### - 설치 후 해당경로 들어가기
 
     $cd /usr/local/mysql/bin
 
-### password 입력하기
+### - password 입력하기
 
     $./mysql -uroot -p
 
@@ -328,19 +338,19 @@ mysql 자체를 내리고 싶으면
 
     $ mysql -u root -p
 
-### 데이터베이스 확인하기
+### - 데이터베이스 확인하기
 
     mysql> show databases;
 
-### 사용하고 싶은 데이터베이스 선택하기
+### - 사용하고 싶은 데이터베이스 선택하기
 
     mysql> use 사용할이름
 
-### 해당 데이터베이스에 있는 테이블 확인하기
+### - 해당 데이터베이스에 있는 테이블 확인하기
 
     mysql> show tables;
 
-### MySQL 종료하기
+### - MySQL 종료하기
 
      mysql> exit
 
@@ -352,3 +362,75 @@ https://dev.mysql.com/downloads/workbench/로 이동해서 다운로드를 한�
 나는 이걸로 다운로드했다.
 
 워크벤치를 설치되면 실행후 localhost를 클릭하고 설정한 비밀번호를 입력하면 데이터를 확인할수 있는 창이 나온다.
+
+### mysql DB 생성방법
+
+    # mysql에서는 기본 DB를 생성해줘야한다!
+    create database nodejs_DB;
+    # 해당 DB를 사용하겠다 라는 명령을 맨처음 실행 시켜줘야한다 .
+    use nodejs_DB;
+
+## mysql 모듈 연결하기
+
+    $ npm install mysql2
+
+폴더를 만들때마다 설치를 해야한다.
+
+_mysql 모듈 가져오기_
+
+```javascript
+// DB연결
+// 1. mysql 연결할 수 있는 mysql 이라는 모듈가져오기
+const mysql = require("mysql2");
+// 2. mysql DB에 접근할수 있는 정보를 저장
+// DB에 접근할 수 있는 기능을 conn에 저장
+let conn = mysql.createConnection({
+  // mysql 서버의 주소(ip)
+  host: "localhost",
+  // mysql에 접속할 id,pw 입력
+  user: "root",
+  password: "coavldjs3372!@",
+  port: "3306",
+  database: "nodejs_DB", // DB생성 이름
+});
+```
+
+<hr/>
+
+~~ ## 템플렛 엔진 nunjunks 설치 (views 엔진) ~~
+
+    $ npm install nunjucks chokidar
+
+# views 폴더 렌더링하여 클라이언트에게 보여주기
+
+** mac을 써서 그런가 nunjunks로 서버가 안열린다 ...**
+
+🤔 window 쓰는 사람들은 nunjunks로 html 파일이 열린다 ?
+
+## EJS 템플릿 엔진 설치하기
+
+    $ npm install ejs
+
+## Express 애플리케이션에서 EJS 뷰 엔진을 설정
+
+```javascript
+const express = require("express");
+const app = express();
+const path = require("path");
+
+// 뷰 엔진으로 'ejs'를 사용하도록 설정
+app.set("view engine", "ejs");
+
+// 뷰 파일들이 위치한 디렉토리 경로 설정 (예시: views 폴더)
+app.set("views", path.join(__dirname, "views"));
+```
+
+.html 파일을 -> .ejs로 변경한다
+
+- 확장자는 .ejs 이어야 서버 실행이 가능하다 .
+
+- <h1><%= 변수명 %></h1> 을 사용하여 데이터를 표시
+
+- 목적: post 보낼 때 body영역의 string을 조작하기 위함.
+
+        response.render()

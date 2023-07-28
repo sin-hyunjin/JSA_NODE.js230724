@@ -1,4 +1,4 @@
-# 🤔230724 Node.js 학습시작
+# 🤔Node.js 학습시작 230724node_js
 
 - 참고예제 : https://product.kyobobook.co.kr/detail/S000001834449
 
@@ -22,7 +22,7 @@
 
     $ node -v
 
-# 🤔230725 get, post 요청방식
+# 🤔get, post 요청방식 230725get_post
 
 1. **`http.createServer()`**:
 
@@ -59,7 +59,7 @@
    - 이 메소드는 응답을 종료하고 클라이언트로 보냅니다.
    - 응답 본문을 작성한 후에 이 메소드를 호출하여 응답을 완료한다.
 
-# 🤔Node.js 수업방향 2307256
+# 🤔Node.js 수업방향 2307256Express
 
 ![image](https://github.com/sin-hyunjin/JSA_NODE.js_230724/assets/116487398/f30ead95-584a-4f04-a8e4-6e774f5e7fcd)
 
@@ -167,7 +167,7 @@ router.get("/plus", (request, response) => {
 });
 ```
 
-# 🤔 express.js 수업내용 230727
+# 🤔 express.js 수업내용 230727Express
 
 ![스크린샷 2023-07-27 오후 3 20 24](https://github.com/sin-hyunjin/JSA_NODE.js_230724/assets/116487398/33ebff95-86df-4941-a521-d4cc53617a34)
 
@@ -180,7 +180,7 @@ const { Router } = require("express");
 const express = require("express");
 const router = express(Router);
 
-// router를 따로 빼줌
+// 서버의 부담을 줄이기 위해 router파일로 따로 빼줌
 router.get("/", (request, response) => {
   console.log("접속확인");
 });
@@ -199,3 +199,112 @@ app.js
 ```javascript
 const router = require("./router/router");
 ```
+
+# 🤔 express.js 수업내용 230728
+
+- 230727Express 회원가입 실습에서 Database 연결하기(MYSQL)
+
+## 수행할 내용
+
+        데이터 입력 -> 회원가입
+        데이터 삭제 -> 회원삭제
+        데이터 수정 -> 회원정보 수정
+
+        데이터 검색 -> 회원전체 검색 , 회원 검색, 로그인
+
+```javascript
+<!-- 1. 회원가입 페이지에서 제출 버튼을 누르면 ID,PW,NAME을 가지고 join 라우터로 이동
+         2. join 라우터는 Login.html로 이동
+         3. Login.html 에서는 위에서 입력한 ID,PW 값을 입력 했을때만
+         S.html로 이동  아니면  F.html 이동
+
+  -->
+```
+
+## ✅Mac에서 MYSQL 다운로드
+
+수업은 오라클 배웠는데 수행은 mysql로 한다니 다시 다운로드 방법을 찾아 보았다 .
+
+### MySQL Community Server 다운로드 및 MySQL 설치
+
+dev.mysql.com/downloads/
+
+- 1. MySQL Community Server 클릭
+
+- 2. Operating System 을 macOS 로 선택하고 macOS 의 dmg 설치파일을 다운로드
+
+- 3. No thanks, just start my download. 클릭.
+
+### 설치 후 해당경로 들어가기
+
+    $cd /usr/local/mysql/bin
+
+### password 입력하기
+
+    $./mysql -uroot -p
+
+<img width="554" alt="스크린샷 2023-07-28 오전 9 39 18" src="https://github.com/sin-hyunjin/NDB_Project_2307241/assets/116487398/8ee60010-4f85-4a80-8d35-60b35e489552">
+
+    $ mysql>  --> 이렇게 뜨면 성공~
+
+## ✅터미널로 다운방법
+
+### 1.MYSQL 다운로드
+
+- 터미널을 실행시킨 다음 커맨드 입력
+
+        $ brew install mysql
+
+### 2.MYSQL 버전확인
+
+    $ mysql -V
+
+### 3.MYSQL 실행
+
+    $ mysql.server start
+
+SUCCESS가 뜨면 성공
+
+mysql 자체를 내리고 싶으면
+
+    $ mysql.server stop
+
+## ✅터미널로 MySQL 설정하기
+
+    $ mysql_secure_installation
+
+- mysql_secure_installation을 입력하면 비밀번호를
+
+복잡하게 만들것이냐라고 묻는데 간단하게 정할것이면 N를
+입력.
+
+만약 복잡하게 설정하고 싶다면 y 또는 Y를 입력
+
+## ✅터미널로 MySQL 접속하기
+
+    $ mysql -u root -p
+
+### 데이터베이스 확인하기
+
+    mysql> show databases;
+
+### 사용하고 싶은 데이터베이스 선택하기
+
+    mysql> use 사용할이름
+
+### 해당 데이터베이스에 있는 테이블 확인하기
+
+    mysql> show tables;
+
+### MySQL 종료하기
+
+     mysql> exit
+
+## ✅ MySQL Workbench 설치하기
+
+https://dev.mysql.com/downloads/workbench/로 이동해서 다운로드를 한다 .
+![스크린샷 2023-07-28 오전 10 07 39](https://github.com/sin-hyunjin/NDB_Project_2307241/assets/116487398/20b865f1-0bcc-4e71-b028-cb32bb8150f5)
+
+나는 이걸로 다운로드했다.
+
+워크벤치를 설치되면 실행후 localhost를 클릭하고 설정한 비밀번호를 입력하면 데이터를 확인할수 있는 창이 나온다.

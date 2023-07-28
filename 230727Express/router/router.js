@@ -2,7 +2,7 @@ const { Router } = require("express");
 const express = require("express");
 const router = express(Router);
 
-// 서버의 부담을 줄이기 위해 router를 따로 빼줌
+// 서버의 부담을 줄이기 위해 router파일로 따로 빼줌
 router.get("/", (request, response) => {
   console.log("접속확인");
 });

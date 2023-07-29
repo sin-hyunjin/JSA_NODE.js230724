@@ -418,7 +418,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-// 뷰 엔진으로 'ejs'를 사용하도록 설정
+// 뷰 엔진으로 'ejs'를 사용하도록 설정한다.
 app.set("view engine", "ejs");
 
 // 뷰 파일들이 위치한 디렉토리 경로 설정 (예시: views 폴더)

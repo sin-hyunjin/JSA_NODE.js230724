@@ -10,6 +10,7 @@ const express = require("express");
 
 // 3. 경로를 설정할 수 있는 Router 만들기
 const router = require("./router/router");
+const page = require("./router/page");
 
 // JSA_NODE.js_230724/230727Express/app.js",
 // 동적페이지를 사용할 수 있는 nunjucks 가져오기
@@ -34,5 +35,6 @@ app.use(express.json());
 
 // router를 등록하기 전에 body 영역부터 허용시켜야한다.
 app.use(router);
+app.use(page);
 // 5. 포트번호 달아주기
 app.listen(3000);

@@ -21,6 +21,7 @@ let conn = mysql.createConnection({
 // 서버의 부담을 줄이기 위해 router파일로 따로 빼줌
 router.get("/", (request, response) => {
   console.log("접속확인");
+  response.render("exTemp", { day: "월요일" });
 });
 router.get("/response", (request, response) => {
   console.log(request.query.text);
@@ -56,8 +57,10 @@ router.get("/nextPage", function (request, response) {
 let join_id = "";
 let join_pw = "";
 let join_name = "";
+
 //  ==============================================
-//  ============  회원가입 페이지  ==============
+//  ============  회원가입 페이지  ===============
+// ===============================================
 router.post("/join", (request, response) => {
   join_id = request.body.id; // 회원가입시 입력한 아이디
   join_pw = request.body.pw; // 회원가입시 입력한 비밀번호
@@ -95,6 +98,7 @@ router.post("/join", (request, response) => {
 
 // ===============================================
 // ==========     로그인 페이지      =============
+// ===============================================
 router.post("/login", (request, response) => {
   let id = request.body.id; // 로그인 아이디
   let pw = request.body.pw; // 저장된 로그인 비밀번호
@@ -135,7 +139,8 @@ router.post("/login", (request, response) => {
 });
 
 // =============================================
-// ======  삭제하고 싶은 회원정보  ============
+// ========  삭제하고 싶은 회원정보  ===========
+// =============================================
 router.post("/delete", (request, response) => {
   let del_user = request.body.del_user;
   console.log("user_name : ", del_user);
@@ -155,7 +160,8 @@ router.post("/delete", (request, response) => {
 });
 
 // ==========================================
-// 업데이트 하고싶은 회원
+// ======== 업데이트 하고싶은 회원 ==========
+// ==========================================
 router.post("/update", (request, response) => {
   let update_id = request.body.id; // 업데이트하고싶은 계정 id
   let update_pw = request.body.pw; // 바꾸고싶은 비밀번호
@@ -170,6 +176,30 @@ router.post("/update", (request, response) => {
       console.log("수정 실패");
     }
   });
+});
+
+// =============================================
+// ========       전체회원 조회      ===========
+// =============================================
+
+router.get("/getAlluser", (request, response) => {
+  // DB접속
+  conn.connect();
+
+  let sql = `select * from member`;
+
+  conn.query(sql, (err, rows) => {
+    if (!err) {
+      //err가 아니라면  -> 쿼리문이 정상 실행
+      console.log("쿼리문 실행완료");
+      console.log(rows);
+      // 회원가입 클릭시 로그인 페이지로 리디렉션
+      response.render("getAlluser", { id: rows });
+    } else {
+      console.log("DB 명령이 제대로 실행되지 않았습니다.");
+    }
+  });
+  // response.end(); //응답 종료
 });
 
 // 위에 만들어진 기능을 외부에서 사용할 수 있도록 빼내는 작업

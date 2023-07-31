@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1px solid black">
+      <tr>
+        <th>ID</th>
+        <th>PW</th>
+        <th>NICK</th>
+      </tr>
+      <% for (var i of id) { %>
+      <tr>
+        <td><%= i.id %></td>
+        <td><%= i.pw %></td>
+        <td><%= i.nick %></td>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>

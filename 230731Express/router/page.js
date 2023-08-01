@@ -3,15 +3,18 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (request, response) => {
-  response.render("Main");
+  response.render("Main.html");
 });
 router.get("/Login", (request, response) => {
-  response.render("Login");
+  response.render("Login.html");
 });
 router.get("/Join", (requset, response) => {
-  response.render("join");
+  response.render("join.html");
 });
 router.get("/SelectOne", (requset, response) => {
-  response.render("SelectOne");
+  // 확장자를 안적을시 ejs로 판단?
+  // nunjucks 모듈을 사용할 시 확장자를 적어줘야한다.
+  response.render("SelectOne.html");
 });
+
 module.exports = router;

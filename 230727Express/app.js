@@ -24,6 +24,10 @@ app.set("view engine", "html");
 
 // ejs 파일들을 동적파일로 사용할 수 있게
 app.set("view engine", "ejs");
+app.set(
+  "views",
+  "/Users/sinhyeonjin/Documents/AI_School/JSA_NODE.js_230724/230727Express/views"
+);
 app.set("views", path.join(__dirname, "views"));
 // views 안에있는 html을 동적파일로 사용할 수 있게끔 만듬
 nunjucks.configure("views", { express: app, watch: true });

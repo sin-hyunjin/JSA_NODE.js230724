@@ -143,7 +143,7 @@ npm init 명령을 이용하여 애플리케이션에 대한 package.json 파일
 
 이 명령을 실행하면 애플리케이션의 이름 및 버전과 같은 몇 가지 정보에 대해 프롬프트하고, 지금은 다음의 항목을 제외한 대부분의 항목에서 ENTER 키를 눌러 기본값을 수락할 수 있따.
 
-    entry point: (index.js)
+    entry point: (index.js)m
 
 기본 파일의 이름을 app.js로 입력하거나 자유롭게 입력
 
